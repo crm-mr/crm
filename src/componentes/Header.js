@@ -10,7 +10,7 @@ const Header = () => {
             
             
 
-            <nav className="navbar navbar-expand-lg   fixed-top navbar_scroll">
+            <nav className="navbar navbar-expand-lg fixed-top navbar_scroll">
             <div className="container">
                 <Link to={'/'}><img className="img_logo_nav" src={logo_turn} /></Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
