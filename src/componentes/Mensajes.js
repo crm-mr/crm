@@ -70,6 +70,7 @@ class Mensajes extends Component {
 
 
         const datos = {
+            propsmensaje: this.state.propsmensaje,
             input_message : this.input_message.current.value,
             id_user_login : this.id_user_login.current.value,
             id_user_interesado : this.id_user_interesado.current.value,
@@ -84,28 +85,22 @@ class Mensajes extends Component {
 
 
 
-         let id_sessin_agente = sessionStorage.getItem("id");
         var data_form = new FormData();
-    data_form.append('nombre',datos.nombre);
-    data_form.append('apellido',datos.apellido);
-    data_form.append('correo',datos.correo);
-    data_form.append('password',datos.password);
-    data_form.append('id_sessin_agente',id_sessin_agente);
+    data_form.append('input_message',datos.input_message);
+    data_form.append('id_user_login',datos.id_user_login);
+    data_form.append('id_user_interesado',datos.id_user_interesado);
+    data_form.append('propsmensaje',datos.propsmensaje);
+
 
 
             axios({
             method: 'post',
-            url: 'https://turnmyapp.com/ws_turnmyapp/get/insertar_agente_by_gerente/validacion',
+            url: 'https://turnmyapp.com/ws_turnmyapp/get/insertar_msj__chat/validacion',
             data: data_form,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
             })
             .then(function (response) {
 
-                if(response.data=='correo_invalid'){
-                    swal("El correo ya se encuentra registrado", "Intenta con otro diferente", "error");
-                }else{
-                    swal("Agente guardado con exito", "", "success");
-                }
             })
             .catch(function (response) {
                 //handle error
@@ -119,15 +114,16 @@ class Mensajes extends Component {
 
             setTimeout(function () {
             //Axios Gerentes por usuario
-      axios.get("https://turnmyapp.com/ws_turnmyapp/get/turnmyapp_gerentes_user/"+sessionStorage.getItem("id")+"").then(response => {
+      //Axios Muestra mensajes por id del producto
+      axios.get("https://turnmyapp.com/ws_turnmyapp/get/msj_by_autos_agente/"+this.state.propsmensaje+"").then(response => {
         this.setState({
-            gerentes_user: response.data
+            msj_autos: response.data
         })
       }).catch(error => {
         console.log(error);
-      })
+      });
 
-    }.bind(this), 3000)
+    }.bind(this), 1000)
 
 
 
