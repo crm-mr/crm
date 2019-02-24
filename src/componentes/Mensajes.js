@@ -11,14 +11,29 @@ class Mensajes extends Component {
         super(props);
         this.state = {
             propsmensaje : this.props.mensajeId,
-            msj_autos : []
+            msj_autos : [],
+            id_user_login : sessionStorage.getItem("id"),
+            id_user_interesado: []
         }
 
         //let myprops = this.props.mensajeId;
-        //Axios Gerentes por usuario
+
+
+        //Axios Muestra mensajes por id del producto
       axios.get("https://turnmyapp.com/ws_turnmyapp/get/msj_by_autos_agente/"+this.state.propsmensaje+"").then(response => {
         this.setState({
             msj_autos: response.data
+        })
+      }).catch(error => {
+        console.log(error);
+      });
+
+
+
+      //Axios obtiene id de usuario que mando el primer mensaje
+      axios.get("https://turnmyapp.com/ws_turnmyapp/get/get_id_user_by_auto/"+this.state.propsmensaje+"").then(response => {
+        this.setState({
+            id_user_interesado: response.data[0][0]
         })
       }).catch(error => {
         console.log(error);
@@ -38,6 +53,96 @@ class Mensajes extends Component {
         }
 
     }
+
+
+
+    input_message = React.createRef();
+    id_user_login = React.createRef();
+    id_user_interesado = React.createRef();
+
+
+
+
+
+    onSubmit = (e) => {
+        e.preventDefault();
+
+
+
+        const datos = {
+            input_message : this.input_message.current.value,
+            id_user_login : this.id_user_login.current.value,
+            id_user_interesado : this.id_user_interesado.current.value,
+        }
+        
+
+        
+
+        if(datos.input_message===''){
+            swal("No puedes mandar mensajes vacios", "Favor de verificar", "error");
+        }else{
+
+
+
+         let id_sessin_agente = sessionStorage.getItem("id");
+        var data_form = new FormData();
+    data_form.append('nombre',datos.nombre);
+    data_form.append('apellido',datos.apellido);
+    data_form.append('correo',datos.correo);
+    data_form.append('password',datos.password);
+    data_form.append('id_sessin_agente',id_sessin_agente);
+
+
+            axios({
+            method: 'post',
+            url: 'https://turnmyapp.com/ws_turnmyapp/get/insertar_agente_by_gerente/validacion',
+            data: data_form,
+            config: { headers: {'Content-Type': 'multipart/form-data' }}
+            })
+            .then(function (response) {
+
+                if(response.data=='correo_invalid'){
+                    swal("El correo ya se encuentra registrado", "Intenta con otro diferente", "error");
+                }else{
+                    swal("Agente guardado con exito", "", "success");
+                }
+            })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
+            });
+
+            e.currentTarget.reset();
+
+
+
+
+            setTimeout(function () {
+            //Axios Gerentes por usuario
+      axios.get("https://turnmyapp.com/ws_turnmyapp/get/turnmyapp_gerentes_user/"+sessionStorage.getItem("id")+"").then(response => {
+        this.setState({
+            gerentes_user: response.data
+        })
+      }).catch(error => {
+        console.log(error);
+      })
+
+    }.bind(this), 3000)
+
+
+
+    
+
+
+                
+
+            }
+
+
+
+
+
+        }
 
 
 
@@ -75,15 +180,23 @@ class Mensajes extends Component {
 
                                             </ul>
                                             <div>
-                                                <div class="msj-rta macro">                        
-                                                    <div class="text text-r" style={{background:'whitesmoke !important;'}}>
-                                                        <input class="mytext" placeholder="Ingresa mensaje"/>
+                                                <form onSubmit={this.onSubmit} >
+                                                <div className="msj-rta macro">
+                                                    <div className="text text-r" style={{background:'whitesmoke !important;'}}>
+                                                        <input type="text" ref={this.input_message} className="mytext" placeholder="Ingresa mensaje"/>
+                                                        <input type="hidden" ref={this.id_user_login} className="mytext" value={this.state.id_user_login} />
+                                                        <input type="hidden" ref={this.id_user_interesado} className="mytext" value={this.state.id_user_interesado} />
                                                     </div>  
 
                                                 </div>
                                                 <div className="div_btn_send_chat">
-                                                    <span class="span_btn_send_chat"><img src={image_send_chat} /></span>
-                                                </div>                
+                                                <button type="submit" className="btn btn-primary btn_form_turn">
+                                                    <span className="span_btn_send_chat"><img src={image_send_chat} /></span>
+                                                </button>
+                                                    
+                                                </div>   
+                                                </form>
+
                                             </div>
                                         </div>
 

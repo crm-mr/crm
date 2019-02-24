@@ -19,7 +19,7 @@ class Dashboard extends Component {
 
 
         //Axios Mensajes Totales
-        axios.get("https://turnmyapp.com/ws_turnmyapp/get/turnmyapp_msj_user_totales/"+sessionStorage.getItem("email")+"").then(response => {
+        axios.get("https://turnmyapp.com/ws_turnmyapp/get/turnmyapp_msj_user_totales/"+sessionStorage.getItem("id")+"").then(response => {
         this.setState({
             msj_totales_user: response.data
         })
@@ -29,7 +29,7 @@ class Dashboard extends Component {
 
 
       //Axios Mensajes Leidos
-      axios.get("https://turnmyapp.com/ws_turnmyapp/get/turnmyapp_msj_user_readed/"+sessionStorage.getItem("email")+"").then(response => {
+      axios.get("https://turnmyapp.com/ws_turnmyapp/get/turnmyapp_msj_user_readed/"+sessionStorage.getItem("id")+"").then(response => {
         this.setState({
             msj_readed_user: response.data
         })
@@ -39,7 +39,7 @@ class Dashboard extends Component {
 
 
       //Axios Mensajes No Leidos
-      axios.get("https://turnmyapp.com/ws_turnmyapp/get/turnmyapp_msj_user_not_readed/"+sessionStorage.getItem("email")+"").then(response => {
+      axios.get("https://turnmyapp.com/ws_turnmyapp/get/turnmyapp_msj_user_not_readed/"+sessionStorage.getItem("id")+"").then(response => {
         this.setState({
             msj_not_readed_user: response.data
         })
@@ -51,7 +51,7 @@ class Dashboard extends Component {
 
       
       //Axios Gerentes totales por usuario
-      axios.get("https://turnmyapp.com/ws_turnmyapp/get/turnmyapp_total_gerentes_user/"+sessionStorage.getItem("email")+"").then(response => {
+      axios.get("https://turnmyapp.com/ws_turnmyapp/get/turnmyapp_total_gerentes_user/"+sessionStorage.getItem("id")+"").then(response => {
         this.setState({
             gerentes_totales_user: response.data
         })
