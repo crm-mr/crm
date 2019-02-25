@@ -210,11 +210,11 @@ body > div > div > div.msj-rta.macro{
     width: 0;
     height: 0;
     content:"";
-    top:-5px;
-    left:-14px;
+    /*top:-5px;
+    left:-14px;*/
     position:relative;
     border-style: solid;
-    border-width: 0 13px 13px 0;
+  /*  border-width: 0 13px 13px 0;*/
     border-color: transparent #ffffff transparent transparent;            
 }
 
@@ -264,24 +264,7 @@ input:focus{
 
 
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Lato Light'), local('Lato-Light'), url(https://fonts.gstatic.com/s/lato/v14/S6u9w4BMUTPHh7USSwiPHA.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wWw.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v14/S6u9w4BMUTPHh6UVSwiPHA.ttf) format('truetype');
-}
+ 
 *,
 *:before,
 *:after {
@@ -294,7 +277,7 @@ body {
  
   padding: 0;
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 i.fa {
   font-size: 16px;
@@ -529,3 +512,49 @@ p {
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+
+
+
+.rad-info-box {
+    margin-bottom: 16px;
+    box-shadow: 1px 1px 2px 0 #CCCCCC;
+    padding: 20px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    background: white !important;
+  }
+  
+  .rad-info-box i {
+    display: block;
+    background-clip: padding-box;
+    margin-right: 15px;
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    line-height: 60px;
+    text-align: center;
+    font-size: 4.4em;
+    position: absolute;
+  }
+  
+  .rad-info-box .value,
+  .rad-info-box .heading {
+    display: block;
+    position: relative;
+    color: #515d6e;
+    text-align: right;
+    z-index: 10;
+  }
+  
+  .rad-info-box .heading {
+    font-size: 1.2em;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+  
+  .rad-info-box .value {
+    font-size: 2.1em;
+    font-weight: 600;
+    margin-top: 5px;
+  }
+  

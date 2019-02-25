@@ -146,7 +146,7 @@ class Mensajes extends Component {
 
     render() {
         return (
-            <div className="productos">
+            <div className="main">
                 <div className="text-center">Autos</div>
 
                 <div className="row">
@@ -206,12 +206,7 @@ class Mensajes extends Component {
                         </div>
 
                 </div>
-                <div className="col-md-3">
-                    <Link to={'/Dashboard'}><button type="button" className="btn btn-warning btn_100">Dashboard</button></Link> <br /><br />
-                    <Link to={'/agentes'}><button type="button" className="btn btn-success btn_100">Agentes</button></Link> <br /><br />
-                    <Link to={'/autos'}><button type="button" className="btn btn-primary btn_100">Autos</button></Link> <br/><br/>
-                    <button type="button" className="btn btn-danger btn_100">Salir</button> <br/>
-                </div>
+                
 
                 </div>
             </div>
