@@ -15,9 +15,6 @@ class Dashboard extends Component {
             gerentes_totales_user : []
 
         }
-
-
-
         //Axios Mensajes Totales
         axios.get("https://turnmyapp.com/ws_turnmyapp/get/turnmyapp_msj_user_totales/"+sessionStorage.getItem("email")+"").then(response => {
         this.setState({
@@ -75,10 +72,13 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div className="productos">
-                <div className="text-center">Bienvenido</div>
+            <div className="main">
+                <div className="text-center">
+                    <h2>Dashboard</h2>
+                </div>
 
                 <div className="row">
+                 
                 <div className="col-md-9">
                         <div className="row">
 
@@ -102,7 +102,7 @@ class Dashboard extends Component {
 
                                 <div className="col-md-3">
                                     <button className="btn btn-warning" type="button" >
-                                    Msj No Leidos 
+                                    No Leidos 
                                             { this.state.msj_not_readed_user.map((datos,i) =>
                                             <span className="badge" key={datos}>{datos.total}</span>
                                             )}
@@ -119,9 +119,7 @@ class Dashboard extends Component {
                                 </div>
 
 
-                                <div className="col-md-12">
-
-                                </div>
+                                
 
 
                                 <div></div>
@@ -131,11 +129,7 @@ class Dashboard extends Component {
                         </div>
 
                 </div>
-                <div className="col-md-3">
-                    <Link to={'/agentes'}><button type="button" className="btn btn-success btn_100">Agentes</button></Link> <br /><br />
-                    <Link to={'/autos'}><button type="button" className="btn btn-primary btn_100">Autos</button></Link> <br/><br/>
-                    <button type="button" className="btn btn-danger btn_100">Salir</button> <br/>
-                </div>
+               
 
                 </div>
             </div>

@@ -46,16 +46,16 @@ class Autos extends Component {
 
     render() {
         return (
-            <div className="productos">
+            <div className="main">
                 <div className="text-center">Autos</div>
 
                 <div className="row">
-                <div className="col-md-9">
+                <div className="col-md-12">
                         <div className="row">
 
                                <div className="col-md-12">
                                     <div className="div_after_table_dashboard">
-                                    <table className="table table-dark">
+                                    <table className="table table-light">
                                         <thead>
                                             <tr>
                                             <th scope="col">Auto</th>
@@ -91,12 +91,7 @@ class Autos extends Component {
                         </div>
 
                 </div>
-                <div className="col-md-3">
-                    <Link to={'/Dashboard'}><button type="button" className="btn btn-warning btn_100">Dashboard</button></Link> <br /><br />
-                    <Link to={'/agentes'}><button type="button" className="btn btn-success btn_100">Agentes</button></Link> <br /><br />
-                    <Link to={'/autos'}><button type="button" className="btn btn-primary btn_100">Autos</button></Link> <br/><br/>
-                    <button type="button" className="btn btn-danger btn_100">Salir</button> <br/>
-                </div>
+               
 
                 </div>
             </div>
