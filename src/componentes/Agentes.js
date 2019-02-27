@@ -214,7 +214,7 @@ class Agentes extends Component {
                 <div className="text-left titles">
                   <h2>
                     <i class="fa fa-user" aria-hidden="true" />
-                    <span class="heading tablestitles"> Autos </span>
+                    <span class="heading tablestitles"> Agentes de ventas </span>
                   </h2>
                 </div>
                 <div className="col-md-12">

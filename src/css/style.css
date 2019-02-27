@@ -422,7 +422,7 @@ p {
   line-height: 60px;
 }
 .sidebar ul li div:hover {
-    background-color: #1c1745;
+  background-color: #35353a;
 }
 .sidebar ul li div:hover i {
   -webkit-animation-name: swing;
@@ -593,14 +593,13 @@ p {
   margin: 20px 0 0 0;
 }
 
-.text-left h2 { 
-  
+.text-left h2 {
   width: 100%;
   text-align: left;
   font-weight: 400;
+  color: #37474F;
   font-family: Roboto;
 }
- 
 
 thead th {
   color: #262626;
@@ -675,4 +674,15 @@ label {
   display: inline-block;
   margin-bottom: .5rem;
   color: #a1a1a1;
+}
+
+
+table{
+	border-collapse:collapse;  
+}
+table tr td, th{ 
+  	padding:5px;
+}
+table tr:hover{  
+    background: #f1f1f1;
 }
