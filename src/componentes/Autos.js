@@ -16,7 +16,7 @@ class Autos extends Component {
 
 
         //Axios Gerentes por usuario
-      axios.get("https://turnmyapp.com/ws_turnmyapp/get/autos_by_agente/"+sessionStorage.getItem("id")+"").then(response => {
+      axios.get("https://turnmyapp.com/ws_turnmyapp/get/autos_by_agente_with_message/"+sessionStorage.getItem("id")+"").then(response => {
         this.setState({
             gerentes_autos: response.data
         })

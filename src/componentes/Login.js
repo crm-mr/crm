@@ -8,7 +8,7 @@ class Login extends Component {
 
     componentWillMount(){
 
-        if(sessionStorage.getItem("email")!= null){
+        if(sessionStorage.getItem("email")!= ''){
             window.location.href = "/Dashboard";
         }
 

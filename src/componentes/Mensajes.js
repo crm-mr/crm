@@ -23,6 +23,7 @@ class Mensajes extends Component {
 
         this.toggle = this.toggle.bind(this);
         this.toggle2 = this.toggle2.bind(this);
+        this.salir = this.salir.bind(this);
 
 
         
@@ -194,6 +195,21 @@ class Mensajes extends Component {
         this.setState(prevState => ({
           modal: !prevState.modal
         }));
+
+    }
+
+
+
+    salir() {
+
+
+        // SI LOS DATOS SON CORRECTOS 
+        sessionStorage.setItem("email", '');
+        sessionStorage.setItem("name", '');
+        sessionStorage.setItem("lastname", '');
+        sessionStorage.setItem("role_id", '');
+        sessionStorage.setItem("id", '');
+        window.location.href = "/";
 
     }
 
@@ -390,7 +406,7 @@ class Mensajes extends Component {
                     <Link to={'/Dashboard'}><button type="button" className="btn btn-warning btn_100">Dashboard</button></Link> <br /><br />
                     <Link to={'/agentes'}><button type="button" className="btn btn-success btn_100">Agentes</button></Link> <br /><br />
                     <Link to={'/autos'}><button type="button" className="btn btn-primary btn_100">Autos</button></Link> <br/><br/>
-                    <button type="button" className="btn btn-danger btn_100">Salir</button> <br/>
+                    <button type="button" className="btn btn-danger btn_100" onClick={() => this.salir()}>Salir</button> <br/>
                 </div>
 
                 </div>
