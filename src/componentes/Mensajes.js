@@ -100,11 +100,13 @@ class Mensajes extends Component {
     } // FIN DE CONSTRUCTOR
 
 
-    toggle(id_user_chat) {
+    toggle(id_user_chat, conversation_id) {
 
 
         this.setState(prevState => ({
-          modal: !prevState.modal
+          modal: !prevState.modal,
+          id_user_conversation: conversation_id,
+          id_user_interesado: id_user_chat
         }));
 
 
@@ -121,7 +123,6 @@ class Mensajes extends Component {
 
 
 
-            
             axios({
             method: 'post',
             url: 'https://turnmyapp.com/ws_turnmyapp/get/get_user_by_product_chat/validacion',
@@ -139,11 +140,52 @@ class Mensajes extends Component {
                 console.error(e);
             });
 
-
             // *** FIN DE VIENDO QUE ID DE USUARIOS MANDARON MENSAJE DE ESTE ID DE PRODUCTO O AUTO ***
+
+
+
+
+            setInterval(function(){
+
+
+                axios({
+                method: 'post',
+                url: 'https://turnmyapp.com/ws_turnmyapp/get/get_user_by_product_chat/validacion',
+                data: data_form_msj_user_chat,
+                config: { headers: {'Content-Type': 'multipart/form-data' }}
+                })
+                .then((response) => {
+                    this.setState({id_users_msj_by_product_chat: response.data});
+    
+           
+    
+                })
+                .catch((e) => 
+                {
+                    console.error(e);
+                });
+
+                data_form_msj_user_chat='';
+                data_form_msj_user_chat = new FormData();
+                data_form_msj_user_chat.append('propsmensaje_datos_msj_user',this.state.propsmensaje);
+                data_form_msj_user_chat.append('iduserlogin_datos_msj_user',this.state.id_user_interesado);
+    
+           }.bind(this), 1000)
+
+            
+
+
+
+
+
+
 
         
       }
+
+
+
+
 
 
       toggle2() {
@@ -166,9 +208,123 @@ class Mensajes extends Component {
             window.location.href = "/";
         }
 
+
+
     }
 
 
+
+
+
+
+
+
+
+
+    input_message = React.createRef();
+    id_user_login = React.createRef();
+    id_user_interesado = React.createRef();
+    id_user_conversation = React.createRef();
+
+
+
+
+
+    onSubmit = (e) => {
+        e.preventDefault();
+
+
+
+        const datos = {
+            propsmensaje: this.state.propsmensaje,
+            input_message : this.input_message.current.value,
+            id_user_login : this.id_user_login.current.value,
+            id_user_interesado : this.id_user_interesado.current.value,
+            id_user_conversation : this.id_user_conversation.current.value
+        }
+        
+
+        
+
+        if(datos.input_message===''){
+            swal("No puedes mandar mensajes vacios", "Favor de verificar", "error");
+        }else{
+
+
+
+        var data_form = new FormData();
+    data_form.append('input_message',datos.input_message);
+    data_form.append('id_user_login',datos.id_user_login);
+    data_form.append('id_user_interesado',datos.id_user_interesado);
+    data_form.append('propsmensaje',datos.propsmensaje);
+    data_form.append('id_user_conversation',datos.id_user_conversation);
+
+
+
+            axios({
+            method: 'post',
+            url: 'https://turnmyapp.com/ws_turnmyapp/get/insertar_msj__chat/validacion',
+            data: data_form,
+            config: { headers: {'Content-Type': 'multipart/form-data' }}
+            })
+            .then(function (response) {
+
+            })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
+            });
+
+            e.currentTarget.reset();
+
+
+
+
+            setTimeout(function () {
+            //Axios Gerentes por usuario
+      //Axios Muestra mensajes por id del producto
+      const datos_msj_user_chat = {
+        propsdatos_msj_user_chat: this.state.propsmensaje,
+        iduser_datos_msj_user_chat : this.id_user_interesado.current.value
+    }
+
+    var data_form_msj_user_chat = new FormData();
+    data_form_msj_user_chat.append('propsmensaje_datos_msj_user',datos_msj_user_chat.propsdatos_msj_user_chat);
+    data_form_msj_user_chat.append('iduserlogin_datos_msj_user',datos_msj_user_chat.iduser_datos_msj_user_chat);
+
+      axios({
+        method: 'post',
+        url: 'https://turnmyapp.com/ws_turnmyapp/get/get_user_by_product_chat/validacion',
+        data: data_form_msj_user_chat,
+        config: { headers: {'Content-Type': 'multipart/form-data' }}
+        })
+        .then((response) => {
+            this.setState({id_users_msj_by_product_chat: response.data});
+
+   
+
+        })
+        .catch((e) => 
+        {
+            console.error(e);
+        });
+
+    }.bind(this), 1000)
+
+
+
+    
+
+
+                
+
+            }
+
+
+
+
+
+        }
 
 
 
@@ -205,7 +361,7 @@ class Mensajes extends Component {
                                                 <div className="card-body">
                                                 <h4 className="card-title" key={datos} >{datos.name}</h4>
                                                 <p className="card-text">{datos.email}</p>
-                                                <button type="button" className="btn btn-primary" onClick={() => this.toggle(datos.sender_id)} >Chat</button>
+                                                <button type="button" className="btn btn-primary" onClick={() => this.toggle(datos.sender_id, datos.conversation_id)} >Chat</button>
                                                 </div>
                                             </div>
                                             </div>
