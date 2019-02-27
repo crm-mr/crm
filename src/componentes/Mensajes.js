@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 import image_send_chat from '../img/arrow_send_chat.png';
+import Sidebar from './Sidebar';
+
 
 class Mensajes extends Component {
 
@@ -146,6 +148,8 @@ class Mensajes extends Component {
 
     render() {
         return (
+            <div>
+            <Sidebar />
             <div className="main">
                 <div className="text-center">Autos</div>
 
@@ -209,6 +213,7 @@ class Mensajes extends Component {
                 
 
                 </div>
+            </div>
             </div>
         );
     }
