@@ -674,6 +674,10 @@ label {
   display: inline-block;
   margin-bottom: .5rem;
   color: #a1a1a1;
+ 
+  font-size: 13pt;
+  font-weight: 400;
+  font-variant-caps: small-caps;
 }
 
 
@@ -685,4 +689,11 @@ table tr td, th{
 }
 table tr:hover{  
     background: #f1f1f1;
+}
+
+
+input.form-control {
+  padding: 15px;
+  font-size: 11pt;
+  color: #636363;
 }

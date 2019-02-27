@@ -239,7 +239,7 @@ class Agentes extends Component {
                                 <th key={datos}>{datos.lastname}</th>
                                 <th key={datos}>{datos.email}</th>
                                 <th key={datos}>
-                                  <button
+                                  <button className=" rad-txt-dange"
                                     onClick={this.eliminarAgente.bind(
                                       this,
                                       datos.id
