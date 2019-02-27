@@ -245,7 +245,7 @@ class Agentes extends Component {
                                       datos.id
                                     )}
                                   >
-                                    Eliminar
+                                    ELIMINAR
                                   </button>
                                 </th>
                               </tr>

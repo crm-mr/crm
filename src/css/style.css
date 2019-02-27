@@ -697,3 +697,12 @@ input.form-control {
   font-size: 11pt;
   color: #636363;
 }
+
+button.rad-txt-dange {
+  background: rgb(247, 93, 129) !important;
+  color: #2b2b2b;
+  border: none;
+  padding: 5px 20px;
+  font-size: 9pt;
+  border-radius: 2px;
+}

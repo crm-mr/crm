@@ -227,3 +227,11 @@ button.rad-txt-dange {
    padding: 5px 20px;
    border-radius: 2px;
 }
+
+
+button.btn.btn-primary.btn_form_turn {
+   padding: 10px 20px;
+   position: relative;
+   float: left;
+   margin: 10px 0 0 0;
+}
