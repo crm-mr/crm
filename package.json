@@ -10,9 +10,10 @@
     "axios-cache-plugin": "^0.1.0",
     "axios-extensions": "^3.0.5",
     "bootstrap": "^4.2.1",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
     "react-scripts": "2.1.2",
+    "reactstrap": "^7.1.0",
     "sweetalert": "^2.1.2"
   },
   "scripts": {
