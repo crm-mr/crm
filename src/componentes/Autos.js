@@ -13,18 +13,41 @@ class Autos extends Component {
         }
 
         this.verMensaje = this.verMensaje.bind(this);
+        this.asignarAgente = this.asignarAgente.bind(this);
 
 
-        //Axios Gerentes por usuario
-      axios.get("https://turnmyapp.com/ws_turnmyapp/get/autos_by_agente_with_message/"+sessionStorage.getItem("id")+"").then(response => {
-        this.setState({
-            gerentes_autos: response.data
-        })
-      }).catch(error => {
-        console.log(error);
-      })
-      
-    } // FIN DE CONSTRUCTOR
+
+
+        const datos_autos_asignadosmessage = {
+            user_producto: sessionStorage.getItem("id"),
+            agente_asignado : sessionStorage.getItem("email")
+        }
+
+        var data_form_auto_asignado_message = new FormData();
+        data_form_auto_asignado_message.append('user_producto',datos_autos_asignadosmessage.user_producto);
+        data_form_auto_asignado_message.append('agente_asignado',datos_autos_asignadosmessage.agente_asignado);
+
+
+        //Axios Gerentes por usuario     
+        axios({
+            method: 'post',
+            url: 'https://turnmyapp.com/ws_turnmyapp/get/autos_by_agente_with_message/validacion',
+            data: data_form_auto_asignado_message,
+            config: { headers: {'Content-Type': 'multipart/form-data' }}
+            })
+            .then((response) => {
+                this.setState({gerentes_autos: response.data});
+               console.log(response);
+            })
+            .catch(function (response) {
+                //handle error
+                console.log(response);
+            });
+
+
+
+
+        }
 
 
 
@@ -41,6 +64,67 @@ class Autos extends Component {
     // FUNCION ELIMINAR AGENTE
     verMensaje = (e) => {
         alert(e);
+    }
+
+
+
+
+
+
+    // FUNCION ELIMINAR AGENTE
+    asignarAgente = (e) => {
+        let id_auto_asignado = e;
+
+        let retVal = window.confirm("¿Deseas asignarte este auto?");
+           if( retVal == true ) {
+            
+            
+
+
+
+
+            const datos_autos_asignados = {
+                id_auto_asignado: id_auto_asignado,
+                auto_asignado_email : sessionStorage.getItem("email")
+            }
+    
+            var data_form_auto_asignado = new FormData();
+            data_form_auto_asignado.append('id_auto_asignado',datos_autos_asignados.id_auto_asignado);
+            data_form_auto_asignado.append('auto_asignado_email',datos_autos_asignados.auto_asignado_email);
+
+
+
+            axios({
+                method: 'post',
+                url: 'https://turnmyapp.com/ws_turnmyapp/get/update_asignar_agente/validacion',
+                data: data_form_auto_asignado,
+                config: { headers: {'Content-Type': 'multipart/form-data' }}
+                })
+                .then(function (response) {
+                    if(response.data=='invalid_asignacion'){
+                        swal("Este auto ya fue asignado a otro agente", "Favor de verificar", "error");
+                    }else{
+                        swal("Asignado con exito", "", "success");
+                    }
+                })
+                .catch(function (response) {
+                    //handle error
+                    console.log(response);
+                });
+
+
+
+
+                
+
+
+              return true;
+           }
+           else {
+
+              return false;
+           }
+
     }
 
 
@@ -75,8 +159,9 @@ class Autos extends Component {
                                             <th key={datos}>{datos.year}</th>
                                             <th key={datos}>
                                             <Link to={`/mensajes/${datos.id}`}>
-                                            Ver Mensaje
+                                            Ver
                                             </Link>
+                                            <button onClick={this.asignarAgente.bind(this, datos.id)}>Asignar</button>
                                             </th>
                                             </tr>
                                             )}
