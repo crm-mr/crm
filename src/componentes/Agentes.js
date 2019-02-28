@@ -328,7 +328,7 @@ class Agentes extends Component {
                             <div className="text-center">
                               <button
                                 type="submit"
-                                className="btn btn-primary btn_form_turn"
+                                className="btn btn-primary btn_form_turn guardar --blue"
                               >
                                 {" "}
                                 GUARDAR{" "}

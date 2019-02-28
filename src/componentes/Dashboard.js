@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/login.css";
@@ -15,7 +17,8 @@ class Dashboard extends Component {
       msj_not_readed_user: [],
       gerentes_autos: [],
       gerentes_totales_user: [],
-      gerentes_user: []
+      gerentes_user: [],
+      perfil_usuario:""
     };
 
     //Axios Gerentes por usuario
@@ -114,14 +117,18 @@ class Dashboard extends Component {
         console.log(error);
       });
   }
-
+  
   componentWillMount() {
-    if (
-      sessionStorage.getItem("email") == "" ||
-      sessionStorage.getItem("email") == null
-    ) {
-      window.location.href = "/";
+       
+    if (sessionStorage.getItem("role_id") == "3") {            
+      this.setState({isRole: 'Agente'});
+    }else if(sessionStorage.getItem("role_id") == "2"){
+      this.setState({isRole: 'Gerente'});
+    }else if(sessionStorage.getItem("role_id") == "1"){
+      this.setState({isRole: 'Administrador'});
     }
+  
+
   }
 
   render() {
@@ -133,6 +140,85 @@ class Dashboard extends Component {
 
         <Sidebar />
         <div className="col-md-12">
+          <div className="row">
+            <div class="col-lg-3 col-xs-12">
+              <div class="WidgetsWrapper ">
+                <div class="VCardWidgetWrapper  ">
+                  <div class="VCardImage">
+                  Bienvenido
+                  </div>
+                  <div class="VCardBody">
+                    <h3 class="Name">
+                      <span>{ sessionStorage.getItem("name") } { sessionStorage.getItem("lastname") } </span>
+                    </h3>
+                    <span class="DesgTitle">
+                      <span>{this.state.isRole}</span>
+                    </span>
+                    <p class="Description">
+                      <span>
+                       
+                      </span>
+                    </p>
+                    <div class="WidgetSocial">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-xs-12">
+              <div class="  WidgetsWrapper ">
+                <div class="VCardWidgetWrapper">
+                  <h3 class="BoxTitle  ">
+                    {" "}
+                    <span>NOMBRE DE USUARIO AGENCIA</span>{" "}
+                  </h3>
+                  <p class="BoxSubTitle  ">
+                    {" "}
+                    <span>
+                      Cards usually cooperate with grid layout in overview page.
+                    </span>{" "}
+                  </p>
+
+                  <div class="row">
+                    <div class="VCardImage  " data-rtl="ltr">
+                      <div class="ant-col-xs-24 ant-col-sm-8 ant-col-md-8">
+                        <div class="  ant-card-bordered">
+                          <div class="ant-card-head">
+                            <div class="ant-card-head-wrapper">
+                            
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-xs-12">
+              <div class="WidgetsWrapper ">
+                <div class="VCardWidgetWrapper  ">
+                  <div class="VCardImage">
+                    imagen del usuario Agencia
+                  </div>
+                  <div class="VCardBody">
+                    <h3 class="Name">
+                     <a href="https://turnmyapp.com/perfil/metricas" target="_blank" ><span>Nombre de la Agencia</span></a>
+                    </h3>
+                    <span class="DesgTitle">
+                      <span>Telefono</span>
+                    </span>
+                     
+                    <div class="WidgetSocial">
+                       <a href="https://turnmyapp.com/perfil">Promocionar Anuncios</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="row">
             <div class="col-lg-3 col-xs-12">
               <div class="rad-info-box rad-txt-success">
@@ -202,7 +288,7 @@ class Dashboard extends Component {
               <div className="BoxWrapper ">
                 <div className="text-left titles">
                   <h2>
-                    <i class="fas fa-car" />
+                    <i class="fa fa-car" />
                     <span class="heading tablestitles"> Autos Publicados </span>
                   </h2>
                 </div>
@@ -213,17 +299,28 @@ class Dashboard extends Component {
                       <th scope="col">Descripción</th>
                       <th scope="col">Precio</th>
                       <th scope="col">Año</th>
+                      
+                      <th scope="col">Paquetes</th>
                     </tr>
                   </thead>
                   <tbody>
                     {this.state.gerentes_autos.map((datos, i) => (
                       <tr>
                         <th scope="row" key={datos}>
-                          {datos.title}
+                          <a href={`https://turnmyapp.com/anuncio/${datos.id}`} target="_blank">
+                            {datos.title}
+                            <img
+                            key={datos} 
+                            src={`https://turnmyapp.com/files/products/${datos.image}`}
+                            alt={datos.name}
+                          />
+                          </a>
                         </th>
+
                         <th key={datos}>{datos.description}</th>
                         <th key={datos}>${datos.price}</th>
                         <th key={datos}>{datos.year}</th>
+                        <th><a className="link-promo orange" href={`https://turnmyapp.com/paquetes/${datos.id}`} target="_blank">Promocionar</a></th>
                       </tr>
                     ))}
                   </tbody>
@@ -241,6 +338,7 @@ class Dashboard extends Component {
                 <table className="table table-light">
                   <thead>
                     <tr>
+                      <th scope="col">Rol</th>
                       <th scope="col">Nombre</th>
                       <th scope="col">Apellido</th>
                       <th scope="col">Correo</th>
@@ -249,6 +347,7 @@ class Dashboard extends Component {
                   <tbody>
                     {this.state.gerentes_user.map((datos, i) => (
                       <tr>
+                        <th scope="row" key={datos}>{datos.role_id}</th>
                         <th scope="row" key={datos}>
                           {datos.name}
                         </th>
