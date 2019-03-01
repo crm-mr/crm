@@ -154,7 +154,9 @@ class Autos extends Component {
                                                     { this.state.gerentes_autos.map((datos,i) =>
                                                     <tr>
                                                     
-                                                    <th  scope="row" key={datos}><a href={`https://turnmyapp.com/anuncio/${datos.id}`} target="_blank">{datos.title}</a></th>
+                                                    <th  scope="row" key={datos}><a href={`https://turnmyapp.com/anuncio/${datos.id}`} target="_blank">
+                                                    <div className="post-img product" style={{backgroundImage: `url(https://turnmyapp.com/files/products/${datos.image})`}}/>
+                                                    {datos.title}</a></th>
                                                     
                                                     <th key={datos}>{datos.description}</th>
                                                     <th key={datos}>${datos.price}</th>
@@ -164,10 +166,10 @@ class Autos extends Component {
                                                     <button className="rad-txt-success mensajes"> Ver Mensajes</button> 
                                                     </Link>
                                                     
-                                                            { datos.email_agente 
+                                                            { datos.id
                                                             ?   null
 
-                                                            :    <button className="rad-txt-primary mensajes" onClick={this.asignarAgente.bind(this, datos.email_agente)}>Asignar</button>
+                                                            :    <button className="rad-txt-primary mensajes" onClick={this.asignarAgente.bind(this, datos.id)}>Asignar</button>
                                                             } 
                                                      </th>
                                                     </tr>

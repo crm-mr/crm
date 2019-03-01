@@ -18,8 +18,26 @@ class Mensajes extends Component {
       id_user_conversation: [],
       id_users_msj_by_product: [],
       id_users_msj_by_product_chat: [],
-      modal: false
+      modal: false,
+      nombre_auto: []
     };
+ 
+    //Axios nombre auto
+    axios
+      .get(
+        "https://turnmyapp.com/ws_turnmyapp/get/nombre_auto/" +
+        this.props.mensajeId +
+          ""
+      )
+      .then(response => {
+        this.setState({
+          nombre_auto: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
 
     this.toggle = this.toggle.bind(this);
     this.toggle2 = this.toggle2.bind(this);
@@ -160,7 +178,7 @@ class Mensajes extends Component {
   }
 
   componentWillMount() {
-    
+ 
   }
 
   input_message = React.createRef();
@@ -253,6 +271,13 @@ class Mensajes extends Component {
                   <h2>
                     <i class="fa fa-envelope mensaje" aria-hidden="true" />
                     <span class="heading tablestitles"> Mensajes </span>
+
+
+
+                      {this.state.nombre_auto.map((datos, i) => (
+                         <div>       {datos.title}</div>
+                    ))}
+
                   </h2>
                 </div> 
 
@@ -310,8 +335,8 @@ class Mensajes extends Component {
           >
             <ModalHeader toggle={this.toggle2}>CHAT</ModalHeader>
             <ModalBody>
-              <div className="col-sm-12 frame bck-white">
-                <ul className="lista_mensaje">
+              <div className="col-sm-12 frame bck-white chat_id">
+                <ul className="lista_mensaje ">
                   {this.state.id_users_msj_by_product_chat.map((datos, i) => (
                     <li style={{ width: "100%" }}>
                       <div className="msj macro">

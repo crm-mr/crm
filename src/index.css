@@ -291,3 +291,16 @@ button.btn.btn_100 {
    vertical-align: top;
    border-bottom: 1px solid #eaeaea !important;
 }
+
+
+.post-img-user {
+   height: 80px;
+   width: 80px;
+   border-radius: 50%;
+}
+
+.VCardWidgetWrapper.card-top {
+   margin: 0;
+   padding: 20px;
+   min-height: 160px;
+}

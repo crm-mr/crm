@@ -18,7 +18,7 @@ class Dashboard extends Component {
       gerentes_autos: [],
       gerentes_totales_user: [],
       gerentes_user: [],
-      perfil_usuario:"",
+      perfil_usuario: "",
       user_company: []
     };
 
@@ -118,38 +118,32 @@ class Dashboard extends Component {
         console.log(error);
       });
 
-
-      //Axios Datos de la empresa
+    //Axios Datos de la empresa
     axios
-    .get(
-      "https://turnmyapp.com/ws_turnmyapp/get/user_empresa/" +
-        sessionStorage.getItem("id") +
-        ""
-    )
-    .then(response => {
-      this.setState({
-        user_company: response.data
+      .get(
+        "https://turnmyapp.com/ws_turnmyapp/get/user_empresa/" +
+          sessionStorage.getItem("id") +
+          ""
+      )
+      .then(response => {
+        this.setState({
+          user_company: response.data
+        });
+      })
+      .catch(error => {
+        console.log(error);
       });
-    })
-    .catch(error => {
-      console.log(error);
-    });
-
   }
-  
+
   componentWillMount() {
-       
-    if (sessionStorage.getItem("role_id") == "3") {            
-      this.setState({isRole: 'Agente'});
-    }else if(sessionStorage.getItem("role_id") == "2"){
-      this.setState({isRole: 'Gerente'});
-    }else if(sessionStorage.getItem("role_id") == "1"){
-      this.setState({isRole: 'Administrador'});
+    if (sessionStorage.getItem("role_id") == "3") {
+      this.setState({ isRole: "Agente" });
+    } else if (sessionStorage.getItem("role_id") == "2") {
+      this.setState({ isRole: "Gerente" });
+    } else if (sessionStorage.getItem("role_id") == "1") {
+      this.setState({ isRole: "Administrador" });
     }
-  
-
   }
- 
 
   render() {
     return (
@@ -161,55 +155,53 @@ class Dashboard extends Component {
         <Sidebar />
         <div className="col-md-12">
           <div className="row">
-            <div class="col-lg-3 col-xs-12">
-              <div class="WidgetsWrapper ">
-                <div class="VCardWidgetWrapper  ">
-                  <div class="VCardImage">
-                  Bienvenido
-                  </div>
-                  <div class="VCardBody">
-                    <h3 class="Name">
-                      <span>{ sessionStorage.getItem("name") } { sessionStorage.getItem("lastname") } </span>
+            <div className="col-lg-3 col-xs-12">
+              <div className="WidgetsWrapper ">
+                <div className="VCardWidgetWrapper  ">
+                  <div className="VCardImage">Bienvenido</div>
+                  <div className="VCardBody">
+                    <h3 className="Name">
+                      <span>
+                        {sessionStorage.getItem("name")}{" "}
+                        {sessionStorage.getItem("lastname")}{" "}
+                      </span>
                     </h3>
-                    <span class="DesgTitle">
+                    <span className="DesgTitle">
                       <span>{this.state.isRole}</span>
                     </span>
-                    <p class="Description">
-                      <span>
-                       
-                      </span>
+                    <p className="Description">
+                      <span />
                     </p>
-                    <div class="WidgetSocial">
-                      
-                    </div>
+                    <div className="WidgetSocial" />
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-6 col-xs-12">
-              <div class="  WidgetsWrapper ">
-                <div class="VCardWidgetWrapper">
-                  <h3 class="BoxTitle  ">
+            <div className="col-lg-6 col-xs-12">
+              <div className="  WidgetsWrapper ">
+                <div className="VCardWidgetWrapper">
+                  <h3 className="BoxTitle  ">
                     {" "}
-                    {this.state.user_company.map((datos, i) => ( <span key={datos}>{datos.name}</span>))}                    
+                    {this.state.user_company.map((datos, i) => (
+                      <span key={datos}>{datos.name}</span>
+                    ))}
                   </h3>
-                  <p class="BoxSubTitle  ">
+                  <p className="BoxSubTitle  ">
                     {" "}
                     <span>
-                    {this.state.user_company.map((datos, i) => ( <span key={datos}>{datos.last_name}</span>))}     
+                      {this.state.user_company.map((datos, i) => (
+                        <span key={datos}>{datos.last_name}</span>
+                      ))}
                     </span>{" "}
                   </p>
 
-                  <div class="row">
-                    <div class="VCardImage  " data-rtl="ltr">
-                      <div class="ant-col-xs-24 ant-col-sm-8 ant-col-md-8">
-                        <div class="  ant-card-bordered">
-                          <div class="ant-card-head">
-                            <div class="ant-card-head-wrapper">
-                            
-                            </div>
+                  <div className="row">
+                    <div className="VCardImage  " data-rtl="ltr">
+                      <div className="ant-col-xs-24 ant-col-sm-8 ant-col-md-8">
+                        <div className="  ant-card-bordered">
+                          <div className="ant-card-head">
+                            <div className="ant-card-head-wrapper" />
                           </div>
-                          
                         </div>
                       </div>
                     </div>
@@ -217,183 +209,202 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
-            <div class="col-lg-3 col-xs-12">
-              <div class="WidgetsWrapper ">
-                <div class="VCardWidgetWrapper  ">
-                  <div class="VCardImage">
-                  {this.state.user_company.map((datos, i) => (
-                         <div>
-                                { datos.image
-                                  ?      <div className="post-img-user" style={{backgroundImage: `url(https://turnmyapp.com/files/users/${datos.image})`}}/>
-
-                                : null
-                                } 
-                                </div>
-                    ))}
-                 
+            <div className="col-lg-3 col-xs-12">
+              <div className="  ">
+                <div className="VCardWidgetWrapper card-top  ">
+                  <div className="VCardImage">
+                    <a href="https://turnmyapp.com/perfil" target="_blank">
+                      {this.state.user_company.map((datos, i) => (
+                        <div>
+                          {datos.image ? (
+                            <div
+                              className="post-img-user"
+                              style={{
+                                backgroundImage: `url(https://turnmyapp.com/files/users/${
+                                  datos.image
+                                })`
+                              }}
+                            />
+                          ) : null}
+                        </div>
+                      ))}
+                    </a>
+                  </div>
+                  <div className="VCardBody">
+                    <div className="link-promo orange">
+                      <a href="https://turnmyapp.com/perfil/metricas">
+                        Métricas
+                      </a>
                     </div>
                   </div>
-                  <div class="VCardBody">
-                    <h3 class="Name">
-                     <a href="https://turnmyapp.com/perfil/metricas" target="_blank" ><span>Nombre de la Agencia</span></a>
-                    </h3>
-                    <span class="DesgTitle">
-                      <span>Telefono</span>
-                    </span>
-                     
-                    <div class="WidgetSocial">
-                       <a href="https://turnmyapp.com/perfil">Promocionar Anuncios</a>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div class="col-lg-3 col-xs-12">
-              <div class="rad-info-box rad-txt-success">
-                <i class="fa fa-envelope" />
-                <span class="heading">Mensajes Totales</span>
-                <span class="value">
-                  <span>
-                    {" "}
-                    {this.state.msj_totales_user.map((datos, i) => (
-                      <span className="badge" key={datos}>
-                        {datos.total}
-                      </span>
-                    ))}
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div class="col-lg-3 col-xs-12">
-              <div class="rad-info-box rad-txt-primary">
-                <i class=" fa fa-folder-open-o " />
-                <span class="heading">Mensajes Leidos</span>
-                <span class="value">
-                  <span>
-                    {" "}
-                    {this.state.msj_readed_user.map((datos, i) => (
-                      <span className="badge" key={datos}>
-                        {datos.total}
-                      </span>
-                    ))}
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div class="col-lg-3 col-xs-12">
-              <div class="rad-info-box rad-txt-danger">
-                <i class="fa fa-th-list" />
-                <span class="heading">Mensajes No Leidos</span>
-                <span class="value">
-                  <span>
-                    {" "}
-                    {this.state.msj_not_readed_user.map((datos, i) => (
-                      <span className="badge" key={datos}>
-                        {datos.total}
-                      </span>
-                    ))}
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div class="col-lg-3 col-xs-12">
-              <div class="rad-info-box rad-txt-warning">
-                <i class="fa fa-user" aria-hidden="true" />
-                <span class="heading"> Gerentes </span>
-                <span class="value">
-                  <span>
-                    {this.state.gerentes_totales_user.map((datos, i) => (
-                      <span className="badge" key={datos}>
-                        {datos.total}
-                      </span>
-                    ))}
-                  </span>
-                </span>
-              </div>
-            </div>
-            <div class="col-lg-12 col-xs-12 line_border" />
-            <div class="col-lg-6 col-xs-12">
-              <div className="BoxWrapper ">
-                <div className="text-left titles">
-                  <h2>
-                    <i class="fa fa-car" />
-                    <span class="heading tablestitles"> Autos Publicados </span>
-                  </h2>
-                </div>
-                <table className="table table-light">
-                  <thead>
-                    <tr>
-                      <th scope="col">Auto</th>
-                      <th scope="col">Descripción</th>
-                      <th scope="col">Precio</th>
-                      <th scope="col">Año</th>
-                      
-                      <th scope="col">Paquetes</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.gerentes_autos.map((datos, i) => (
-                      <tr>
-                        <th scope="row" key={datos}>
-                          <a href={`https://turnmyapp.com/anuncio/${datos.id}`} target="_blank">
-                          
-                                  { datos.image
-                                          ?      <div className="post-img" style={{backgroundImage: `url(https://turnmyapp.com/files/products/${datos.image})`}}/>
-                                    
-                                    : null
-                                  }
-                                  <span clasName="title_product">{datos.title}</span>
-                            
-                          </a>
-                        </th>
-
-                        <th key={datos}>{datos.description}</th>
-                        <th key={datos}>${datos.price}</th>
-                        <th key={datos}>{datos.year}</th>
-                        <th><a className="link-promo orange" href={`https://turnmyapp.com/paquetes/${datos.id}`} target="_blank">Promocionar</a></th>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="col-lg-6 col-xs-12">
-              <div className="BoxWrapper ">
-                <div className="text-left titles">
-                  <h2>
-                    <i class="fa fa-user" aria-hidden="true" />
-                    <span class="heading tablestitles"> Agentes </span>
-                  </h2>
-                </div>
-                <table className="table table-light">
-                  <thead>
-                    <tr>
-                      <th scope="col">Rol</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellido</th>
-                      <th scope="col">Correo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.gerentes_user.map((datos, i) => (
-                      <tr>
-                        <th scope="row" key={datos}>{datos.role_id}</th>
-                        <th scope="row" key={datos}>
-                          {datos.name}
-                        </th>
-                        <th key={datos}>{datos.lastname}</th>
-                        <th key={datos}>{datos.email}</th>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
               </div>
             </div>
           </div>
         </div>
-    
+        <div className="row">
+          <div className="col-lg-3 col-xs-12">
+            <div className="rad-info-box rad-txt-success">
+              <i className="fa fa-envelope" />
+              <span className="heading">Mensajes Totales</span>
+              <span className="value">
+                <span>
+                  {" "}
+                  {this.state.msj_totales_user.map((datos, i) => (
+                    <span className="badge" key={datos}>
+                      {datos.total}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            </div>
+          </div>
+          <div className="col-lg-3 col-xs-12">
+            <div className="rad-info-box rad-txt-primary">
+              <i className=" fa fa-folder-open-o " />
+              <span className="heading">Mensajes Leidos</span>
+              <span className="value">
+                <span>
+                  {" "}
+                  {this.state.msj_readed_user.map((datos, i) => (
+                    <span className="badge" key={datos}>
+                      {datos.total}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            </div>
+          </div>
+          <div className="col-lg-3 col-xs-12">
+            <div className="rad-info-box rad-txt-danger">
+              <i className="fa fa-th-list" />
+              <span className="heading">Mensajes No Leidos</span>
+              <span className="value">
+                <span>
+                  {" "}
+                  {this.state.msj_not_readed_user.map((datos, i) => (
+                    <span className="badge" key={datos}>
+                      {datos.total}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            </div>
+          </div>
+          <div className="col-lg-3 col-xs-12">
+            <div className="rad-info-box rad-txt-warning">
+              <i className="fa fa-user" aria-hidden="true" />
+              <span className="heading"> Gerentes </span>
+              <span className="value">
+                <span>
+                  {this.state.gerentes_totales_user.map((datos, i) => (
+                    <span className="badge" key={datos}>
+                      {datos.total}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            </div>
+          </div>
+          <div className="col-lg-12 col-xs-12 line_border" />
+          <div className="col-lg-6 col-xs-12">
+            <div className="BoxWrapper ">
+              <div className="text-left titles">
+                <h2>
+                  <i className="fa fa-car" />
+                  <span className="heading tablestitles">
+                    {" "}
+                    Autos Publicados{" "}
+                  </span>
+                </h2>
+              </div>
+              <table className="table table-light">
+                <thead>
+                  <tr>
+                    <th scope="col">Auto</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Año</th>
+
+                    <th scope="col">Paquetes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.gerentes_autos.map((datos, i) => (
+                    <tr>
+                      <th scope="row" key={datos}>
+                        <a
+                          href={`https://turnmyapp.com/anuncio/${datos.id}`}
+                          target="_blank"
+                        >
+                          {datos.image ? (
+                            <div
+                              className="post-img"
+                              style={{
+                                backgroundImage: `url(https://turnmyapp.com/files/products/${
+                                  datos.image
+                                })`
+                              }}
+                            />
+                          ) : null}
+                          <span clasName="title_product">{datos.title}</span>
+                        </a>
+                      </th>
+
+                      <th key={datos}>{datos.description}</th>
+                      <th key={datos}>${datos.price}</th>
+                      <th key={datos}>{datos.year}</th>
+                      <th>
+                        <a
+                          className="link-promo orange"
+                          href={`https://turnmyapp.com/paquetes/${datos.id}`}
+                          target="_blank"
+                        >
+                          Promocionar
+                        </a>
+                      </th>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="col-lg-6 col-xs-12">
+            <div className="BoxWrapper ">
+              <div className="text-left titles">
+                <h2>
+                  <i className="fa fa-user" aria-hidden="true" />
+                  <span className="heading tablestitles"> Agentes </span>
+                </h2>
+              </div>
+              <table className="table table-light">
+                <thead>
+                  <tr>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Correo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.gerentes_user.map((datos, i) => (
+                    <tr>
+                      <th scope="row" key={datos}>
+                        {this.isRole}
+                      </th>
+                      <th scope="row" key={datos}>
+                        {datos.name}
+                      </th>
+                      <th key={datos}>{datos.lastname}</th>
+                      <th key={datos}>{datos.email}</th>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
