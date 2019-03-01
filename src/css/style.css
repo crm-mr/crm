@@ -639,7 +639,7 @@ font-weight: 400;
 
 .rad-info-box.rad-txt-success {
 background: #66d38b !important;
-color: #;
+color: #fff;
 }
 
 .table td, .table th {
@@ -889,7 +889,6 @@ width: 100%;
 
 
 a:hover {
-<<<<<<< HEAD
   color: #b0b0b0; 
 }
 
@@ -922,9 +921,7 @@ Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
-@media 
-only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px)  {
+@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {
 
 	table { 
 	  	width: 100%; 
@@ -965,8 +962,4 @@ only screen and (max-width: 760px),
 		font-weight: bold;
 	}
 
-=======
-  color: #b0b0b0;
-  text-decoration: underline;
->>>>>>> 06ec213f0ca05910fe6ac26e4c24ab7c1d5f3195
 }
