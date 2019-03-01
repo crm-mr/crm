@@ -163,8 +163,13 @@ class Autos extends Component {
                                                     <Link to={`/mensajes/${datos.id}`}>
                                                     <button className="rad-txt-success mensajes"> Ver Mensajes</button> 
                                                     </Link>
-                                                    <button className="rad-txt-primary mensajes" onClick={this.asignarAgente.bind(this, datos.id)}>Asignar</button>
-                                                    </th>
+                                                    
+                                                            { datos.email_agente 
+                                                            ?   null
+
+                                                            :    <button className="rad-txt-primary mensajes" onClick={this.asignarAgente.bind(this, datos.email_agente)}>Asignar</button>
+                                                            } 
+                                                     </th>
                                                     </tr>
                                                     )}
                                                     

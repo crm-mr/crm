@@ -222,8 +222,16 @@ class Dashboard extends Component {
                 <div class="VCardWidgetWrapper  ">
                   <div class="VCardImage">
                   {this.state.user_company.map((datos, i) => (
-                       <img src={`https://turnmyapp.com/files/users/${datos.image}`} />
-                    ))}aaa
+                         <div>
+                                { datos.image
+                                  ?      <div className="post-img-user" style={{backgroundImage: `url(https://turnmyapp.com/files/users/${datos.image})`}}/>
+
+                                : null
+                                } 
+                                </div>
+                    ))}
+                 
+                    </div>
                   </div>
                   <div class="VCardBody">
                     <h3 class="Name">
@@ -385,7 +393,7 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
-      </div>
+    
     );
   }
 }
