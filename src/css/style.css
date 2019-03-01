@@ -889,6 +889,7 @@ width: 100%;
 
 
 a:hover {
+<<<<<<< HEAD
   color: #b0b0b0; 
 }
 
@@ -964,4 +965,8 @@ only screen and (max-width: 760px),
 		font-weight: bold;
 	}
 
+=======
+  color: #b0b0b0;
+  text-decoration: underline;
+>>>>>>> 06ec213f0ca05910fe6ac26e4c24ab7c1d5f3195
 }

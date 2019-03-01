@@ -18,7 +18,8 @@ class Dashboard extends Component {
       gerentes_autos: [],
       gerentes_totales_user: [],
       gerentes_user: [],
-      perfil_usuario:""
+      perfil_usuario:"",
+      user_company: []
     };
 
     //Axios Gerentes por usuario
@@ -116,8 +117,25 @@ class Dashboard extends Component {
       .catch(error => {
         console.log(error);
       });
+
+
+      //Axios Datos de la empresa
+    axios
+    .get(
+      "https://turnmyapp.com/ws_turnmyapp/get/user_empresa/" +
+        sessionStorage.getItem("id") +
+        ""
+    )
+    .then(response => {
+      this.setState({
+        user_company: response.data
+      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
   }
-  
   
   componentWillMount() {
        
@@ -173,7 +191,7 @@ class Dashboard extends Component {
                 <div class="VCardWidgetWrapper">
                   <h3 class="BoxTitle  ">
                     {" "}
-                    <span>NOMBRE DE USUARIO AGENCIA</span>{" "}
+                    {this.state.user_company.map((datos, i) => ( <span key={datos}>Agencia: {datos.name}</span>))}                    
                   </h3>
                   <p class="BoxSubTitle  ">
                     {" "}

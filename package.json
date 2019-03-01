@@ -7,7 +7,10 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.12",
     "@fortawesome/free-solid-svg-icons": "^5.6.3",
     "@fortawesome/react-fontawesome": "^0.1.4",
+<<<<<<< HEAD
     "axios": "^0.18.0",
+=======
+>>>>>>> 06ec213f0ca05910fe6ac26e4c24ab7c1d5f3195
     "axios-cache-plugin": "^0.1.0",
     "axios-extensions": "^3.0.5",
     "bootstrap": "^4.2.1",
