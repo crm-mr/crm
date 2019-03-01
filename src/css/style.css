@@ -894,12 +894,11 @@ a:hover {
 
 
 .post-img {
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   background-size: cover;
   border-radius: 50%;
 }
-
 
 table {   
  
@@ -921,7 +920,30 @@ Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
-@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px)  {
+@media only screen and (max-width: 860px),(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+
+  .col-md-6 {
+    padding: 0;
+    margin: 0;
+}
+
+.mx-auto.col-sm-12 {
+  margin: 0;
+  padding: 0;
+}
+
+
+.BoxWrapper {
+  margin: 0;
+  padding: 5px 10px;
+}.text-left.titles {
+  padding: 0;
+  text-align: center;
+  margin: 0;
+}
+
+
 
 	table { 
 	  	width: 100%; 

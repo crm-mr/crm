@@ -191,12 +191,12 @@ class Dashboard extends Component {
                 <div class="VCardWidgetWrapper">
                   <h3 class="BoxTitle  ">
                     {" "}
-                    {this.state.user_company.map((datos, i) => ( <span key={datos}>Agencia: {datos.name}</span>))}                    
+                    {this.state.user_company.map((datos, i) => ( <span key={datos}>{datos.name}</span>))}                    
                   </h3>
                   <p class="BoxSubTitle  ">
                     {" "}
                     <span>
-                      Cards usually cooperate with grid layout in overview page.
+                    {this.state.user_company.map((datos, i) => ( <span key={datos}>{datos.last_name}</span>))}     
                     </span>{" "}
                   </p>
 
@@ -329,12 +329,12 @@ class Dashboard extends Component {
                         <th scope="row" key={datos}>
                           <a href={`https://turnmyapp.com/anuncio/${datos.id}`} target="_blank">
                           
-                            { datos.image
-                                    ?      <div className="post-img" style={{backgroundImage: `url(https://turnmyapp.com/files/products/${datos.image})`}}/>
+                                  { datos.image
+                                          ?      <div className="post-img" style={{backgroundImage: `url(https://turnmyapp.com/files/products/${datos.image})`}}/>
                                     
                                     : null
                                   }
-                                  <span clasName="title_product">    {datos.title}</span>
+                                  <span clasName="title_product">{datos.title}</span>
                             
                           </a>
                         </th>
