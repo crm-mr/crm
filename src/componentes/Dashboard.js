@@ -118,6 +118,7 @@ class Dashboard extends Component {
       });
   }
   
+  
   componentWillMount() {
        
     if (sessionStorage.getItem("role_id") == "3") {            
@@ -130,6 +131,7 @@ class Dashboard extends Component {
   
 
   }
+ 
 
   render() {
     return (
@@ -308,12 +310,14 @@ class Dashboard extends Component {
                       <tr>
                         <th scope="row" key={datos}>
                           <a href={`https://turnmyapp.com/anuncio/${datos.id}`} target="_blank">
-                            {datos.title}
-                            <img
-                            key={datos} 
-                            src={`https://turnmyapp.com/files/products/${datos.image}`}
-                            alt={datos.name}
-                          />
+                          
+                            { datos.image
+                                    ?      <div className="post-img" style={{backgroundImage: `url(https://turnmyapp.com/files/products/${datos.image})`}}/>
+                                    
+                                    : null
+                                  }
+                                  <span clasName="title_product">    {datos.title}</span>
+                            
                           </a>
                         </th>
 
