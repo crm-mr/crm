@@ -220,7 +220,9 @@ class Dashboard extends Component {
               <div class="WidgetsWrapper ">
                 <div class="VCardWidgetWrapper  ">
                   <div class="VCardImage">
-                    imagen del usuario Agencia
+                  {this.state.user_company.map((datos, i) => (
+                       <img src={`https://turnmyapp.com/files/users/${datos.image}`} />
+                    ))}aaa
                   </div>
                   <div class="VCardBody">
                     <h3 class="Name">
